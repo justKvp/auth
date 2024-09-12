@@ -10,7 +10,7 @@ import lombok.Setter;
 @Table(
         name = "realmlist"
 )
-public class Realmlist extends PanacheEntityBase {
+public class RealmList extends PanacheEntityBase {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", columnDefinition = "int unsigned")

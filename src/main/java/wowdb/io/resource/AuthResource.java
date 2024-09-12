@@ -55,6 +55,13 @@ public class AuthResource {
         return authService.getAccountMutedList();
     }
 
+    @GET
+    @Path("/getAutoBroadCast")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getAutoBroadCastList() {
+        return authService.getAutoBroadCastList();
+    }
+
     @POST
     @Path("/verifyAccount")
     @Consumes(MediaType.APPLICATION_JSON)

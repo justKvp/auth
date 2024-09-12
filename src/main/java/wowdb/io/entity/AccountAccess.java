@@ -30,12 +30,12 @@ public class AccountAccess extends PanacheEntityBase {
     @Setter
     public Account account;
 
-    @Column(name = "SecurityLevel", columnDefinition = "tinyint unsigned")
+    @Column(name = "SecurityLevel", columnDefinition = "tinyint unsigned", nullable = false)
     @Getter
     @Setter
     private Integer securityLevel;
 
-    @Column(name = "RealmID", columnDefinition = "int")
+    @Column(name = "RealmID", columnDefinition = "int", nullable = false)
     @Getter
     @Setter
     private Integer realmID;
@@ -46,7 +46,7 @@ public class AccountAccess extends PanacheEntityBase {
     private String comment;
 
     public static AccountAccess findByID(Long Id) {
-        return (AccountAccess)findAllByID(Id).firstResult();
+        return (AccountAccess) findAllByID(Id).firstResult();
     }
 
     public static PanacheQuery<AccountAccess> findAllByID(Long Id) {

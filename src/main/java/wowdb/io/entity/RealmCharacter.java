@@ -18,12 +18,12 @@ public class RealmCharacter extends PanacheEntityBase {
     @Setter
     private Integer id;
 
-    @Column(name = "realmid", columnDefinition = "int unsigned")
+    @Column(name = "realmid", columnDefinition = "int unsigned", nullable = false)
     @Getter
     @Setter
     private Integer realmid;
 
-    @Column(name = "numchars", columnDefinition = "tinyint unsigned")
+    @Column(name = "numchars", columnDefinition = "tinyint unsigned", nullable = false)
     @Getter
     @Setter
     private Integer numchars;

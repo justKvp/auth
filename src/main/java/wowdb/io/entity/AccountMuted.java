@@ -17,22 +17,22 @@ public class AccountMuted extends PanacheEntityBase {
     @Setter
     private Long guid;
 
-    @Column(name = "mutedate", columnDefinition = "int unsigned")
+    @Column(name = "mutedate", columnDefinition = "int unsigned", nullable = false)
     @Getter
     @Setter
     private Long mutedate;
 
-    @Column(name = "mutetime", columnDefinition = "int unsigned")
+    @Column(name = "mutetime", columnDefinition = "int unsigned", nullable = false)
     @Getter
     @Setter
     private Long mutetime;
 
-    @Column(name = "mutedby", columnDefinition = "varchar(50)", length = 50)
+    @Column(name = "mutedby", columnDefinition = "varchar(50)", length = 50, nullable = false)
     @Getter
     @Setter
     private String mutedby;
 
-    @Column(name = "mutereason", columnDefinition = "varchar(255)")
+    @Column(name = "mutereason", columnDefinition = "varchar(255)", nullable = false)
     @Getter
     @Setter
     private String mutereason;

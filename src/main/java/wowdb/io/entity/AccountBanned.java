@@ -17,27 +17,27 @@ public class AccountBanned extends PanacheEntityBase {
     @Setter
     private Long id;
 
-    @Column(name = "bandate", columnDefinition = "int unsigned")
+    @Column(name = "bandate", columnDefinition = "int unsigned", nullable = false)
     @Getter
     @Setter
     private Long bandate;
 
-    @Column(name = "unbandate", columnDefinition = "int unsigned")
+    @Column(name = "unbandate", columnDefinition = "int unsigned", nullable = false)
     @Getter
     @Setter
     private Long unbandate;
 
-    @Column(name = "bannedby", columnDefinition = "varchar(50)", length = 50)
+    @Column(name = "bannedby", columnDefinition = "varchar(50)", length = 50, nullable = false)
     @Getter
     @Setter
     private String bannedby;
 
-    @Column(name = "banreason", columnDefinition = "varchar(255)")
+    @Column(name = "banreason", columnDefinition = "varchar(255)", nullable = false)
     @Getter
     @Setter
     private String banreason;
 
-    @Column(name = "active", columnDefinition = "tinyint unsigned")
+    @Column(name = "active", columnDefinition = "tinyint unsigned", nullable = false)
     @Getter
     @Setter
     private Boolean active;

@@ -67,7 +67,7 @@ public class AuthService {
     }
 
     public Response getRealmLists() {
-        List<Realmlist> realms = Realmlist.listAll();
+        List<RealmList> realms = RealmList.listAll();
         return RUtil.success(realms);
     }
 
@@ -81,6 +81,11 @@ public class AuthService {
         return RUtil.success(accountMutedList);
     }
 
+    public Response getAutoBroadCastList() {
+        List<AutoBroadCast> autoBroadCastList = AutoBroadCast.listAll();
+        return RUtil.success(autoBroadCastList);
+    }
+
     @Transactional(value = Transactional.TxType.REQUIRES_NEW, rollbackOn = Exception.class)
     protected void addAccount(AccountCreateRq accountCreateRq) throws NoSuchAlgorithmException {
         byte[] salt = generateRandomSalt(32);
@@ -90,8 +95,8 @@ public class AuthService {
 
         Account account = getAccount(accountCreateRq, salt, verifier);
 
-        List<Realmlist> realmlists = Realmlist.listAll();
-        for (Realmlist it : realmlists) {
+        List<RealmList> realmLists = RealmList.listAll();
+        for (RealmList it : realmLists) {
             RealmCharacter realmCharacter = new RealmCharacter();
             realmCharacter.setRealmid(it.getId());
             realmCharacter.setNumchars(0);
