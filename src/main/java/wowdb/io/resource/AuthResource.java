@@ -34,6 +34,13 @@ public class AuthResource {
         return authService.getAccountAccess(userName);
     }
 
+    @GET
+    @Path("/realms")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getRealmLists() {
+        return authService.getRealmLists();
+    }
+
     @POST
     @Path("/verifyAccount")
     @Consumes(MediaType.APPLICATION_JSON)

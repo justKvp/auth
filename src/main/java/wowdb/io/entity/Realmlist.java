@@ -1,5 +1,6 @@
 package wowdb.io.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -38,6 +39,7 @@ public class Realmlist extends PanacheEntityBase {
     private String localSubnetMask;
 
     @Column(name = "port", columnDefinition = "smallint unsigned")
+    @JsonIgnore
     @Getter
     @Setter
     private Integer port;

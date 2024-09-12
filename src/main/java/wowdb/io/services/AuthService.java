@@ -68,6 +68,11 @@ public class AuthService {
         return RUtil.success();
     }
 
+    public Response getRealmLists() {
+        List<Realmlist> realms = Realmlist.listAll();
+        return RUtil.success(realms);
+    }
+
     @Transactional(value = Transactional.TxType.REQUIRES_NEW, rollbackOn = Exception.class)
     protected void addAccount(AccountCreateRq accountCreateRq) throws NoSuchAlgorithmException {
         byte[] salt = generateRandomSalt(32);
