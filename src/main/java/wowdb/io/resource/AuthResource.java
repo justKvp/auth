@@ -41,6 +41,13 @@ public class AuthResource {
         return authService.getRealmLists();
     }
 
+    @GET
+    @Path("/getAccountBanned")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getAccountBannedList() {
+        return authService.getAccountBannedList();
+    }
+
     @POST
     @Path("/verifyAccount")
     @Consumes(MediaType.APPLICATION_JSON)
