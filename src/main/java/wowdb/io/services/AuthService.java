@@ -63,7 +63,7 @@ public class AuthService {
         try {
             addAccount(accountCreateRq);
         } catch (NoSuchAlgorithmException e) {
-            return RUtil.createAccountError(e.getMessage());
+            return RUtil.serverError(e.getMessage());
         }
         return RUtil.success();
     }

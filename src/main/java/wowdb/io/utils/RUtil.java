@@ -51,10 +51,6 @@ public class RUtil {
         return preconditionFailed(CODE_LOGIN_OR_PASSWORD_INCORRECT, LOGIN_OR_PASSWORD_INCORRECT);
     }
 
-    public static Response createAccountError(String msg) {
-        return expectationFailed(CODE_ACCOUNT_CREATE_OTHER, String.format(ACCOUNT_CREATE_ERROR, msg));
-    }
-
     public static Response serverError(String msg) {
         return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
                 .entity(new CommonMsg(CODE_ERROR_UNEXPECTED, msg))
