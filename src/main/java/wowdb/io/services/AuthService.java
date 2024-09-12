@@ -3,10 +3,7 @@ package wowdb.io.services;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.core.Response;
-import wowdb.io.entity.Account;
-import wowdb.io.entity.AccountBanned;
-import wowdb.io.entity.RealmCharacter;
-import wowdb.io.entity.Realmlist;
+import wowdb.io.entity.*;
 import wowdb.io.pojo.requests.AccountCreateRq;
 import wowdb.io.pojo.requests.AccountVerifyRq;
 import wowdb.io.utils.RUtil;
@@ -77,6 +74,11 @@ public class AuthService {
     public Response getAccountBannedList() {
         List<AccountBanned> accountBannedList = AccountBanned.listAll();
         return RUtil.success(accountBannedList);
+    }
+
+    public Response getAccountMutedList() {
+        List<AccountMuted> accountMutedList = AccountMuted.listAll();
+        return RUtil.success(accountMutedList);
     }
 
     @Transactional(value = Transactional.TxType.REQUIRES_NEW, rollbackOn = Exception.class)

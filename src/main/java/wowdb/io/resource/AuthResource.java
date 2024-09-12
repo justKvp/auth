@@ -48,6 +48,13 @@ public class AuthResource {
         return authService.getAccountBannedList();
     }
 
+    @GET
+    @Path("/getAccountMuted")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getAccountMutedList() {
+        return authService.getAccountMutedList();
+    }
+
     @POST
     @Path("/verifyAccount")
     @Consumes(MediaType.APPLICATION_JSON)
