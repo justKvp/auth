@@ -7,4 +7,5 @@ public class ResponseInternalCodes {
     public static final Integer CODE_ACCOUNT_CREATE_ALREADY_EXIST = 11;
     public static final Integer CODE_ACCOUNT_ACCESS_DOES_NOT_EXIST = 12;
     public static final Integer CODE_LOGIN_OR_PASSWORD_INCORRECT = 13;
+    public static final Integer CODE_BUILD_INFO_DOES_NOT_EXIST = 14;
 }

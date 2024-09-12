@@ -86,6 +86,19 @@ public class AuthService {
         return RUtil.success(autoBroadCastList);
     }
 
+    public Response getBuildInfoList() {
+        List<BuildInfo> buildInfoList = BuildInfo.listAll();
+        return RUtil.success(buildInfoList);
+    }
+
+    public Response getBuildInfoByBuild(Integer build) {
+        BuildInfo buildInfo = BuildInfo.findByBuild(build);
+        if (buildInfo == null) {
+            return RUtil.buildInfoDoesNotExist(build);
+        }
+        return RUtil.success(buildInfo);
+    }
+
     @Transactional(value = Transactional.TxType.REQUIRES_NEW, rollbackOn = Exception.class)
     protected void addAccount(AccountCreateRq accountCreateRq) throws NoSuchAlgorithmException {
         byte[] salt = generateRandomSalt(32);

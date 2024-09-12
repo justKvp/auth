@@ -62,6 +62,20 @@ public class AuthResource {
         return authService.getAutoBroadCastList();
     }
 
+    @GET
+    @Path("/getBuildInfo/{build}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getBuildInfoByBuild(@PathParam(value = "build") Integer build) {
+        return authService.getBuildInfoByBuild(build);
+    }
+
+    @GET
+    @Path("/getBuildInfoList")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getBuildInfoList() {
+        return authService.getBuildInfoList();
+    }
+
     @POST
     @Path("/verifyAccount")
     @Consumes(MediaType.APPLICATION_JSON)

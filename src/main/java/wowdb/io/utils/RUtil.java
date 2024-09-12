@@ -17,6 +17,12 @@ public class RUtil {
                 .build();
     }
 
+    public static Response serverError(String msg) {
+        return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
+                .entity(new CommonMsg(CODE_ERROR_UNEXPECTED, msg))
+                .build();
+    }
+
     public static Response authorizedFailed(Integer code, String msg) {
         return Response.status(Response.Status.UNAUTHORIZED)
                 .entity(new CommonMsg(code, msg))
@@ -51,9 +57,7 @@ public class RUtil {
         return preconditionFailed(CODE_LOGIN_OR_PASSWORD_INCORRECT, LOGIN_OR_PASSWORD_INCORRECT);
     }
 
-    public static Response serverError(String msg) {
-        return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
-                .entity(new CommonMsg(CODE_ERROR_UNEXPECTED, msg))
-                .build();
+    public static Response buildInfoDoesNotExist(Integer build) {
+        return expectationFailed(CODE_BUILD_INFO_DOES_NOT_EXIST, String.format(BUILD_INFO_DOES_NOT_EXIST, build));
     }
 }
