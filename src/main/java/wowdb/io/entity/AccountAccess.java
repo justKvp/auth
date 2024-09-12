@@ -1,0 +1,55 @@
+package wowdb.io.entity;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
+import io.quarkus.hibernate.orm.panache.PanacheQuery;
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+
+@Entity
+@Table(
+        name = "account_access"
+)
+public class AccountAccess extends PanacheEntityBase {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "AccountID", columnDefinition = "int unsigned", length = 32)
+    @Getter
+    @Setter
+    private Long accountID;
+
+    @OneToOne(
+            cascade = {CascadeType.DETACH}
+    )
+    @JoinColumn(
+            name = "AccountID"
+    )
+    @JsonIgnore
+    @Getter
+    @Setter
+    public Account account;
+
+    @Column(name = "SecurityLevel", columnDefinition = "tinyint unsigned")
+    @Getter
+    @Setter
+    private Integer securityLevel;
+
+    @Column(name = "RealmID", columnDefinition = "int")
+    @Getter
+    @Setter
+    private Integer realmID;
+
+    @Column(name = "Comment", columnDefinition = "varchar(255)")
+    @Getter
+    @Setter
+    private String comment;
+
+    public static AccountAccess findByID(Long Id) {
+        return (AccountAccess)findAllByID(Id).firstResult();
+    }
+
+    public static PanacheQuery<AccountAccess> findAllByID(Long Id) {
+        return find("accountID", new Object[]{Id});
+    }
+}
