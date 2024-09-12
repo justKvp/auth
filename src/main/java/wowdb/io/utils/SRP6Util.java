@@ -1,7 +1,5 @@
 package wowdb.io.utils;
 
-import org.apache.commons.lang3.ArrayUtils;
-
 import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -23,7 +21,7 @@ public class SRP6Util {
 
         byte[] hashX = makeSHA1fromArgs(salt, h1);
 
-        ArrayUtils.reverse(hashX);
+        AUtil.reverse(hashX);
 
         return new BigInteger(1, hashX);  // '1' указывает, что BigInteger всегда положительный
     }
@@ -31,7 +29,7 @@ public class SRP6Util {
     private static byte[] finishVerifier(BigInteger source) {
         // Преобразуем BigInteger в байты и инвертируем их
         byte[] reverseVer = source.toByteArray();
-        ArrayUtils.reverse(reverseVer);
+        AUtil.reverse(reverseVer);
         return reverseVer;
     }
 
