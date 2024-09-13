@@ -10,22 +10,18 @@ import lombok.Setter;
 @Table(
         name = "realmcharacters"
 )
+@Getter
+@Setter
 public class RealmCharacter extends PanacheEntityBase {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", columnDefinition = "int")
-    @Getter
-    @Setter
     private Integer id;
 
     @Column(name = "realmid", columnDefinition = "int unsigned", nullable = false)
-    @Getter
-    @Setter
     private Integer realmid;
 
     @Column(name = "numchars", columnDefinition = "tinyint unsigned", nullable = false)
-    @Getter
-    @Setter
     private Integer numchars;
 
     @ManyToOne(
@@ -35,7 +31,5 @@ public class RealmCharacter extends PanacheEntityBase {
             name = "acctid"
     )
     @JsonIgnore
-    @Getter
-    @Setter
     public Account account;
 }

@@ -11,12 +11,12 @@ import lombok.Setter;
 @Table(
         name = "account_access"
 )
+@Getter
+@Setter
 public class AccountAccess extends PanacheEntityBase {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "AccountID", columnDefinition = "int unsigned", length = 32)
-    @Getter
-    @Setter
     private Long accountID;
 
     @OneToOne(
@@ -26,23 +26,15 @@ public class AccountAccess extends PanacheEntityBase {
             name = "AccountID"
     )
     @JsonIgnore
-    @Getter
-    @Setter
     public Account account;
 
     @Column(name = "SecurityLevel", columnDefinition = "tinyint unsigned", nullable = false)
-    @Getter
-    @Setter
     private Integer securityLevel;
 
     @Column(name = "RealmID", columnDefinition = "int", nullable = false)
-    @Getter
-    @Setter
     private Integer realmID;
 
     @Column(name = "Comment", columnDefinition = "varchar(255)")
-    @Getter
-    @Setter
     private String comment;
 
     public static AccountAccess findByID(Long Id) {
