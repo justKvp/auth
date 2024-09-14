@@ -5,8 +5,8 @@ import jakarta.validation.Valid;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
-import wowdb.io.pojo.requests.AccountVerifyRq;
 import wowdb.io.pojo.requests.AccountCreateRq;
+import wowdb.io.pojo.requests.AccountVerifyRq;
 import wowdb.io.services.AuthService;
 
 @Path("/auth")

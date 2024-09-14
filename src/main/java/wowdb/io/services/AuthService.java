@@ -4,6 +4,7 @@ import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.core.Response;
 import wowdb.io.entity.*;
+import wowdb.io.exceptions.CustomException;
 import wowdb.io.pojo.requests.AccountCreateRq;
 import wowdb.io.pojo.requests.AccountVerifyRq;
 import wowdb.io.utils.RUtil;
@@ -30,7 +31,7 @@ public class AuthService {
                     account.getSalt(),
                     account.getVerifier()) ? RUtil.success() : RUtil.loginOrPasswordIncorrect();
         } catch (NoSuchAlgorithmException e) {
-            return RUtil.serverError(e.getMessage());
+            throw new CustomException(e);
         }
     }
 
@@ -66,7 +67,7 @@ public class AuthService {
         try {
             addAccount(accountCreateRq);
         } catch (NoSuchAlgorithmException e) {
-            return RUtil.serverError(e.getMessage());
+            throw new CustomException(e);
         }
         return RUtil.success();
     }
