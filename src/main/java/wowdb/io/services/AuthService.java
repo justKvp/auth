@@ -58,6 +58,11 @@ public class AuthService {
         if (account != null) {
             return RUtil.accountAlreadyExist(accountCreateRq.getAccount_name());
         }
+        account = Account.findByEmail(accountCreateRq.getAccount_email());
+        if (account != null) {
+            return RUtil.accountEmailAlreadyInUse(accountCreateRq.getAccount_email());
+        }
+
         try {
             addAccount(accountCreateRq);
         } catch (NoSuchAlgorithmException e) {

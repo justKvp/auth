@@ -46,7 +46,11 @@ public class RUtil {
     }
 
     public static Response accountAlreadyExist(String username) {
-        return expectationFailed(CODE_ACCOUNT_CREATE_ALREADY_EXIST, String.format(ACCOUNT_ALREADY_EXIST, username));
+        return expectationFailed(CODE_ACCOUNT_CREATE_LOGIN_ALREADY_EXIST, String.format(ACCOUNT_LOGIN_ALREADY_EXIST, username));
+    }
+
+    public static Response accountEmailAlreadyInUse(String username) {
+        return expectationFailed(CODE_ACCOUNT_CREATE_EMAIL_ALREADY_IN_USE, String.format(ACCOUNT_EMAIL_ALREADY_IN_USE, username));
     }
 
     public static Response accountAccessDoesNotExist(String username) {

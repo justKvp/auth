@@ -118,4 +118,12 @@ public class Account extends PanacheEntityBase {
     public static PanacheQuery<Account> findAllByUsername(String userName) {
         return find("username", new Object[]{userName});
     }
+
+    public static Account findByEmail(String email) {
+        return (Account) findAllByEmail(email).firstResult();
+    }
+
+    public static PanacheQuery<Account> findAllByEmail(String email) {
+        return find("email", new Object[]{email});
+    }
 }
