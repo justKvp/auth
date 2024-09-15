@@ -139,7 +139,7 @@ public class AuthService {
     public Response getIpBannedByIp(String ip) {
         IpBanned ipBanned = IpBanned.findByIp(ip);
         if (ipBanned == null) {
-            return RUtil.buildIpBannedDoesNotExist(ip);
+            return RUtil.ipBannedDoesNotExist(ip);
         }
         return RUtil.success(ipBanned);
     }

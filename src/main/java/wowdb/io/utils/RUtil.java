@@ -73,7 +73,7 @@ public class RUtil {
         return expectationFailed(CODE_BUILD_EXECUTABLE_HASH_DOES_NOT_EXIST, String.format(BUILD_EXECUTABLE_HASH_DOES_NOT_EXIST, build));
     }
 
-    public static Response buildIpBannedDoesNotExist(String ip) {
+    public static Response ipBannedDoesNotExist(String ip) {
         return expectationFailed(CODE_IP_BANNED_DOES_NOT_EXIST, String.format(BUILD_P_BANNED_DOES_NOT_EXIST, ip));
     }
 }
