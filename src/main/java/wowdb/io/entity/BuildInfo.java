@@ -30,21 +30,6 @@ public class BuildInfo extends PanacheEntityBase {
     @Column(name = "hotfixVersion", columnDefinition = "char(3)", length = 3)
     private String hotfixVersion;
 
-    @Column(name = "winAuthSeed", columnDefinition = "varchar(32)", length = 32)
-    private String winAuthSeed;
-
-    @Column(name = "win64AuthSeed", columnDefinition = "varchar(32)", length = 32)
-    private String win64AuthSeed;
-
-    @Column(name = "mac64AuthSeed", columnDefinition = "varchar(32)", length = 32)
-    private String mac64AuthSeed;
-
-    @Column(name = "winChecksumSeed", columnDefinition = "varchar(40)", length = 40)
-    private String winChecksumSeed;
-
-    @Column(name = "macChecksumSeed", columnDefinition = "varchar(40)", length = 40)
-    private String macChecksumSeed;
-
     public static BuildInfo findByBuild(Integer build) {
         return (BuildInfo) findAllByBuild(build).firstResult();
     }
