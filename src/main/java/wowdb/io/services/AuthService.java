@@ -131,6 +131,19 @@ public class AuthService {
         return RUtil.success(buildInfo);
     }
 
+    public Response getIpBannedList() {
+        List<IpBanned> ipBannedList = IpBanned.listAll();
+        return RUtil.success(ipBannedList);
+    }
+
+    public Response getIpBannedByIp(String ip) {
+        IpBanned ipBanned = IpBanned.findByIp(ip);
+        if (ipBanned == null) {
+            return RUtil.buildIpBannedDoesNotExist(ip);
+        }
+        return RUtil.success(ipBanned);
+    }
+
     @Transactional(value = Transactional.TxType.REQUIRES_NEW, rollbackOn = Exception.class)
     protected void addAccount(AccountCreateRq accountCreateRq) throws NoSuchAlgorithmException {
         byte[] salt = generateRandomSalt(32);

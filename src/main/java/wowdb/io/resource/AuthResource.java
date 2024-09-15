@@ -104,6 +104,20 @@ public class AuthResource {
         return authService.getBuildInfoList();
     }
 
+    @GET
+    @Path("/getIpBanned/{ip}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getBuildInfoByBuild(@PathParam(value = "ip") String ip) {
+        return authService.getIpBannedByIp(ip);
+    }
+
+    @GET
+    @Path("/getIpBannedList")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getIpBannedList() {
+        return authService.getIpBannedList();
+    }
+
     @POST
     @Path("/verifyAccount")
     @Consumes(MediaType.APPLICATION_JSON)
