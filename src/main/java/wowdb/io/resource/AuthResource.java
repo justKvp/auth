@@ -63,20 +63,6 @@ public class AuthResource {
     }
 
     @GET
-    @Path("/getBuildInfo/{build}")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response getBuildInfoByBuild(@PathParam(value = "build") Integer build) {
-        return authService.getBuildInfoByBuild(build);
-    }
-
-    @GET
-    @Path("/getBuildInfoList")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response getBuildInfoList() {
-        return authService.getBuildInfoList();
-    }
-
-    @GET
     @Path("/getBuildAuthKey/{build}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getBuildAuthKeyByBuild(@PathParam(value = "build") Integer build) {
@@ -88,6 +74,34 @@ public class AuthResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getBuildAuthKeyList() {
         return authService.getBuildAuthKeyList();
+    }
+
+    @GET
+    @Path("/getBuildExecutableHash/{build}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getBuildExecutableHashByBuild(@PathParam(value = "build") Integer build) {
+        return authService.getBuildExecutableHashByBuild(build);
+    }
+
+    @GET
+    @Path("/getBuildExecutableHashList")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getBuildExecutableHashList() {
+        return authService.getBuildExecutableHashList();
+    }
+
+    @GET
+    @Path("/getBuildInfo/{build}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getBuildInfoByBuild(@PathParam(value = "build") Integer build) {
+        return authService.getBuildInfoByBuild(build);
+    }
+
+    @GET
+    @Path("/getBuildInfoList")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getBuildInfoList() {
+        return authService.getBuildInfoList();
     }
 
     @POST

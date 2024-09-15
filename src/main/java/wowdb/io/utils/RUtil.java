@@ -64,4 +64,12 @@ public class RUtil {
     public static Response buildInfoDoesNotExist(Integer build) {
         return expectationFailed(CODE_BUILD_INFO_DOES_NOT_EXIST, String.format(BUILD_INFO_DOES_NOT_EXIST, build));
     }
+
+    public static Response buildAuthKeyDoesNotExist(Integer build) {
+        return expectationFailed(CODE_BUILD_AUTH_KEY_DOES_NOT_EXIST, String.format(BUILD_AUTH_KEY_DOES_NOT_EXIST, build));
+    }
+
+    public static Response buildExecutableHashKeyDoesNotExist(Integer build) {
+        return expectationFailed(CODE_BUILD_EXECUTABLE_HASH_DOES_NOT_EXIST, String.format(BUILD_EXECUTABLE_HASH_DOES_NOT_EXIST, build));
+    }
 }

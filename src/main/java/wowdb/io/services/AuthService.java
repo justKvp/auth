@@ -98,11 +98,24 @@ public class AuthService {
     }
 
     public Response getBuildAuthKeyByBuild(Integer build) {
-        BuildAuthKey buildInfo = BuildAuthKey.findByBuild(build);
-        if (buildInfo == null) {
-            return RUtil.buildInfoDoesNotExist(build);
+        List<BuildAuthKey> buildAuthKey = BuildAuthKey.findByBuild(build);
+        if (buildAuthKey.isEmpty()) {
+            return RUtil.buildAuthKeyDoesNotExist(build);
         }
-        return RUtil.success(buildInfo);
+        return RUtil.success(buildAuthKey);
+    }
+
+    public Response getBuildExecutableHashList() {
+        List<BuildExecutableHash> buildExecutableHashList = BuildExecutableHash.listAll();
+        return RUtil.success(buildExecutableHashList);
+    }
+
+    public Response getBuildExecutableHashByBuild(Integer build) {
+        List<BuildExecutableHash> buildExecutableHash = BuildExecutableHash.findByBuild(build);
+        if (buildExecutableHash.isEmpty()) {
+            return RUtil.buildExecutableHashKeyDoesNotExist(build);
+        }
+        return RUtil.success(buildExecutableHash);
     }
 
     public Response getBuildInfoList() {

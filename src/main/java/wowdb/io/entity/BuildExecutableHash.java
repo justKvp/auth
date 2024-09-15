@@ -10,11 +10,11 @@ import java.util.List;
 
 @Entity
 @Table(
-        name = "build_auth_key"
+        name = "build_executable_hash"
 )
 @Getter
 @Setter
-public class BuildAuthKey extends PanacheEntityBase {
+public class BuildExecutableHash extends PanacheEntityBase {
 
     @Column(name = "build", columnDefinition = "int")
     private Integer build;
@@ -22,21 +22,15 @@ public class BuildAuthKey extends PanacheEntityBase {
     @Column(name = "platform", columnDefinition = "char(4)", length = 4, nullable = false)
     private String platform;
 
-    @Column(name = "arch", columnDefinition = "char(4)", length = 4, nullable = false)
-    private String arch;
-
-    @Column(name = "type", columnDefinition = "char(4)", length = 4, nullable = false)
-    private String type;
-
     @Id
-    @Column(name = "key", columnDefinition = "binary(16)", length = 16, nullable = false)
-    private byte[] key;
+    @Column(name = "executableHash", columnDefinition = "binary(20)", length = 20, nullable = false)
+    private byte[] executableHash;
 
-    public static List<BuildAuthKey> findByBuild(Integer build) {
+    public static List<BuildExecutableHash> findByBuild(Integer build) {
         return findAllByBuild(build).list();
     }
 
-    public static PanacheQuery<BuildAuthKey> findAllByBuild(Integer build) {
+    public static PanacheQuery<BuildExecutableHash> findAllByBuild(Integer build) {
         return find("build", new Object[]{build});
     }
 }

@@ -8,4 +8,6 @@ public class ResponseStrings {
     public static final String ACCOUNT_ACCESS_DOES_NOT_EXIST = "AccountAccess for login: [%s] - does not exist";
     public static final String LOGIN_OR_PASSWORD_INCORRECT = "Login or Password incorrect";
     public static final String BUILD_INFO_DOES_NOT_EXIST = "BuildInfo [%d] - does not exist";
+    public static final String BUILD_AUTH_KEY_DOES_NOT_EXIST = "Build Auth Key [%d] - does not exist";
+    public static final String BUILD_EXECUTABLE_HASH_DOES_NOT_EXIST = "Build Executable Hash [%d] - does not exist";
 }
