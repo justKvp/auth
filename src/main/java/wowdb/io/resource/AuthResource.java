@@ -76,6 +76,20 @@ public class AuthResource {
         return authService.getBuildInfoList();
     }
 
+    @GET
+    @Path("/getBuildAuthKey/{build}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getBuildAuthKeyByBuild(@PathParam(value = "build") Integer build) {
+        return authService.getBuildAuthKeyByBuild(build);
+    }
+
+    @GET
+    @Path("/getBuildAuthKeyList")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getBuildAuthKeyList() {
+        return authService.getBuildAuthKeyList();
+    }
+
     @POST
     @Path("/verifyAccount")
     @Consumes(MediaType.APPLICATION_JSON)

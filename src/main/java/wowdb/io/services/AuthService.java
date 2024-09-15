@@ -92,6 +92,19 @@ public class AuthService {
         return RUtil.success(autoBroadCastList);
     }
 
+    public Response getBuildAuthKeyList() {
+        List<BuildAuthKey> buildAuthKeyList = BuildAuthKey.listAll();
+        return RUtil.success(buildAuthKeyList);
+    }
+
+    public Response getBuildAuthKeyByBuild(Integer build) {
+        BuildAuthKey buildInfo = BuildAuthKey.findByBuild(build);
+        if (buildInfo == null) {
+            return RUtil.buildInfoDoesNotExist(build);
+        }
+        return RUtil.success(buildInfo);
+    }
+
     public Response getBuildInfoList() {
         List<BuildInfo> buildInfoList = BuildInfo.listAll();
         return RUtil.success(buildInfoList);
