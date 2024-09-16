@@ -36,6 +36,12 @@ public class RUtil {
                 .build());
     }
 
+    public static Response serverError(String msg) {
+        return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
+                .entity(new CommonMsg(CODE_ERROR_UNEXPECTED, msg))
+                .build();
+    }
+
     public static Uni<Response> accountDoesNotExist(String username) {
         return expectationFailed(CODE_ACCOUNT_DOES_NOT_EXIST, String.format(ACCOUNT_DOES_NOT_EXIST, username));
     }
