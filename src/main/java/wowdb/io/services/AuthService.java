@@ -1,5 +1,6 @@
 package wowdb.io.services;
 
+import io.smallrye.mutiny.Uni;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.core.Response;
@@ -19,7 +20,7 @@ import static wowdb.io.utils.SRP6Util.*;
 @ApplicationScoped
 public class AuthService {
 
-    public Response verifyAccount(AccountVerifyRq accountVerifyRq) {
+    public Uni<Response> verifyAccount(AccountVerifyRq accountVerifyRq) {
         Account account = Account.findByUsername(accountVerifyRq.getAccount_name().toUpperCase());
         if (account == null) {
             return RUtil.accountDoesNotExist(accountVerifyRq.getAccount_name());
@@ -35,7 +36,7 @@ public class AuthService {
         }
     }
 
-    public Response getAccount(String userName) {
+    public Uni<Response> getAccount(String userName) {
         Account account = Account.findByUsername(userName.toUpperCase());
         if (account == null) {
             return RUtil.accountDoesNotExist(userName);
@@ -43,7 +44,7 @@ public class AuthService {
         return RUtil.success(account);
     }
 
-    public Response getAccountAccess(String userName) {
+    public Uni<Response> getAccountAccess(String userName) {
         Account account = Account.findByUsername(userName.toUpperCase());
         if (account == null) {
             return RUtil.accountDoesNotExist(userName);
@@ -54,7 +55,7 @@ public class AuthService {
         return RUtil.success(account.accountAccess);
     }
 
-    public Response createAccount(AccountCreateRq accountCreateRq) {
+    public Uni<Response> createAccount(AccountCreateRq accountCreateRq) {
         Account account = Account.findByUsername(accountCreateRq.getAccount_name().toUpperCase());
         if (account != null) {
             return RUtil.accountAlreadyExist(accountCreateRq.getAccount_name());
@@ -72,32 +73,32 @@ public class AuthService {
         return RUtil.success();
     }
 
-    public Response getRealmLists() {
+    public Uni<Response> getRealmLists() {
         List<RealmList> realms = RealmList.listAll();
         return RUtil.success(realms);
     }
 
-    public Response getAccountBannedList() {
+    public Uni<Response> getAccountBannedList() {
         List<AccountBanned> accountBannedList = AccountBanned.listAll();
         return RUtil.success(accountBannedList);
     }
 
-    public Response getAccountMutedList() {
+    public Uni<Response> getAccountMutedList() {
         List<AccountMuted> accountMutedList = AccountMuted.listAll();
         return RUtil.success(accountMutedList);
     }
 
-    public Response getAutoBroadCastList() {
+    public Uni<Response> getAutoBroadCastList() {
         List<AutoBroadCast> autoBroadCastList = AutoBroadCast.listAll();
         return RUtil.success(autoBroadCastList);
     }
 
-    public Response getBuildAuthKeyList() {
+    public Uni<Response> getBuildAuthKeyList() {
         List<BuildAuthKey> buildAuthKeyList = BuildAuthKey.listAll();
         return RUtil.success(buildAuthKeyList);
     }
 
-    public Response getBuildAuthKeyByBuild(Integer build) {
+    public Uni<Response> getBuildAuthKeyByBuild(Integer build) {
         List<BuildAuthKey> buildAuthKey = BuildAuthKey.findByBuild(build);
         if (buildAuthKey.isEmpty()) {
             return RUtil.buildAuthKeyDoesNotExist(build);
@@ -105,12 +106,12 @@ public class AuthService {
         return RUtil.success(buildAuthKey);
     }
 
-    public Response getBuildExecutableHashList() {
+    public Uni<Response> getBuildExecutableHashList() {
         List<BuildExecutableHash> buildExecutableHashList = BuildExecutableHash.listAll();
         return RUtil.success(buildExecutableHashList);
     }
 
-    public Response getBuildExecutableHashByBuild(Integer build) {
+    public Uni<Response> getBuildExecutableHashByBuild(Integer build) {
         List<BuildExecutableHash> buildExecutableHash = BuildExecutableHash.findByBuild(build);
         if (buildExecutableHash.isEmpty()) {
             return RUtil.buildExecutableHashKeyDoesNotExist(build);
@@ -118,12 +119,12 @@ public class AuthService {
         return RUtil.success(buildExecutableHash);
     }
 
-    public Response getBuildInfoList() {
+    public Uni<Response> getBuildInfoList() {
         List<BuildInfo> buildInfoList = BuildInfo.listAll();
         return RUtil.success(buildInfoList);
     }
 
-    public Response getBuildInfoByBuild(Integer build) {
+    public Uni<Response> getBuildInfoByBuild(Integer build) {
         BuildInfo buildInfo = BuildInfo.findByBuild(build);
         if (buildInfo == null) {
             return RUtil.buildInfoDoesNotExist(build);
@@ -131,12 +132,12 @@ public class AuthService {
         return RUtil.success(buildInfo);
     }
 
-    public Response getIpBannedList() {
+    public Uni<Response> getIpBannedList() {
         List<IpBanned> ipBannedList = IpBanned.listAll();
         return RUtil.success(ipBannedList);
     }
 
-    public Response getIpBannedByIp(String ip) {
+    public Uni<Response> getIpBannedByIp(String ip) {
         IpBanned ipBanned = IpBanned.findByIp(ip);
         if (ipBanned == null) {
             return RUtil.ipBannedDoesNotExist(ip);

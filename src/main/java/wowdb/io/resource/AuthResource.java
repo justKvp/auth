@@ -1,5 +1,7 @@
 package wowdb.io.resource;
 
+import io.smallrye.common.annotation.Blocking;
+import io.smallrye.mutiny.Uni;
 import jakarta.inject.Inject;
 import jakarta.validation.Valid;
 import jakarta.ws.rs.*;
@@ -10,6 +12,7 @@ import wowdb.io.pojo.requests.AccountVerifyRq;
 import wowdb.io.services.AuthService;
 
 @Path("/auth")
+@Blocking
 public class AuthResource {
     @Inject
     AuthService authService;
@@ -23,98 +26,98 @@ public class AuthResource {
     @GET
     @Path("/getAccount/{userName}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getAccount(@PathParam(value = "userName") String userName) {
+    public Uni<Response> getAccount(@PathParam(value = "userName") String userName) {
         return authService.getAccount(userName);
     }
 
     @GET
     @Path("/getAccountAccess/{userName}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getAccountAccess(@PathParam(value = "userName") String userName) {
+    public Uni<Response> getAccountAccess(@PathParam(value = "userName") String userName) {
         return authService.getAccountAccess(userName);
     }
 
     @GET
     @Path("/realms")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getRealmLists() {
+    public Uni<Response> getRealmLists() {
         return authService.getRealmLists();
     }
 
     @GET
     @Path("/getAccountBanned")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getAccountBannedList() {
+    public Uni<Response> getAccountBannedList() {
         return authService.getAccountBannedList();
     }
 
     @GET
     @Path("/getAccountMuted")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getAccountMutedList() {
+    public Uni<Response> getAccountMutedList() {
         return authService.getAccountMutedList();
     }
 
     @GET
     @Path("/getAutoBroadCast")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getAutoBroadCastList() {
+    public Uni<Response> getAutoBroadCastList() {
         return authService.getAutoBroadCastList();
     }
 
     @GET
     @Path("/getBuildAuthKey/{build}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getBuildAuthKeyByBuild(@PathParam(value = "build") Integer build) {
+    public Uni<Response> getBuildAuthKeyByBuild(@PathParam(value = "build") Integer build) {
         return authService.getBuildAuthKeyByBuild(build);
     }
 
     @GET
     @Path("/getBuildAuthKeyList")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getBuildAuthKeyList() {
+    public Uni<Response> getBuildAuthKeyList() {
         return authService.getBuildAuthKeyList();
     }
 
     @GET
     @Path("/getBuildExecutableHash/{build}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getBuildExecutableHashByBuild(@PathParam(value = "build") Integer build) {
+    public Uni<Response> getBuildExecutableHashByBuild(@PathParam(value = "build") Integer build) {
         return authService.getBuildExecutableHashByBuild(build);
     }
 
     @GET
     @Path("/getBuildExecutableHashList")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getBuildExecutableHashList() {
+    public Uni<Response> getBuildExecutableHashList() {
         return authService.getBuildExecutableHashList();
     }
 
     @GET
     @Path("/getBuildInfo/{build}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getBuildInfoByBuild(@PathParam(value = "build") Integer build) {
+    public Uni<Response> getBuildInfoByBuild(@PathParam(value = "build") Integer build) {
         return authService.getBuildInfoByBuild(build);
     }
 
     @GET
     @Path("/getBuildInfoList")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getBuildInfoList() {
+    public Uni<Response> getBuildInfoList() {
         return authService.getBuildInfoList();
     }
 
     @GET
     @Path("/getIpBanned/{ip}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getBuildInfoByBuild(@PathParam(value = "ip") String ip) {
+    public Uni<Response> getBuildInfoByBuild(@PathParam(value = "ip") String ip) {
         return authService.getIpBannedByIp(ip);
     }
 
     @GET
     @Path("/getIpBannedList")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getIpBannedList() {
+    public Uni<Response> getIpBannedList() {
         return authService.getIpBannedList();
     }
 
@@ -122,7 +125,7 @@ public class AuthResource {
     @Path("/verifyAccount")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response verifyAccount(@Valid AccountVerifyRq accountVerifyRq) {
+    public Uni<Response> verifyAccount(@Valid AccountVerifyRq accountVerifyRq) {
         return authService.verifyAccount(accountVerifyRq);
     }
 
@@ -130,7 +133,7 @@ public class AuthResource {
     @Path("/createAccount")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response createAccount(@Valid AccountCreateRq accountCreateRq) {
+    public Uni<Response> createAccount(@Valid AccountCreateRq accountCreateRq) {
         return authService.createAccount(accountCreateRq);
     }
 }
