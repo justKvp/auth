@@ -1,5 +1,7 @@
 package wowdb.io.entity;
 
+import io.quarkus.cache.CacheKey;
+import io.quarkus.cache.CacheResult;
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import io.quarkus.hibernate.orm.panache.PanacheQuery;
 import jakarta.persistence.*;
@@ -32,7 +34,8 @@ public class BuildAuthKey extends PanacheEntityBase {
     @Column(name = "key", columnDefinition = "binary(16)", length = 16, nullable = false)
     private byte[] key;
 
-    public static List<BuildAuthKey> findByBuild(Integer build) {
+    @CacheResult(cacheName = "BuildAuthKeyFindByBuild")
+    public static List<BuildAuthKey> findByBuild(@CacheKey Integer build) {
         return findAllByBuild(build).list();
     }
 

@@ -1,6 +1,8 @@
 package wowdb.io.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.quarkus.cache.CacheKey;
+import io.quarkus.cache.CacheResult;
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import io.quarkus.hibernate.orm.panache.PanacheQuery;
 import jakarta.persistence.*;
@@ -111,7 +113,8 @@ public class Account extends PanacheEntityBase {
     @Column(name = "recruiter", columnDefinition = "int unsigned", nullable = false)
     private Integer recruiter;
 
-    public static Account findByUsername(String userName) {
+    @CacheResult(cacheName = "AccountFindByUsername")
+    public static Account findByUsername(@CacheKey String userName) {
         return (Account) findAllByUsername(userName).firstResult();
     }
 
@@ -119,7 +122,8 @@ public class Account extends PanacheEntityBase {
         return find("username", new Object[]{userName});
     }
 
-    public static Account findByEmail(String email) {
+    @CacheResult(cacheName = "AccountFindByEmail")
+    public static Account findByEmail(@CacheKey String email) {
         return (Account) findAllByEmail(email).firstResult();
     }
 

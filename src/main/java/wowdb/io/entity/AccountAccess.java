@@ -1,6 +1,8 @@
 package wowdb.io.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.quarkus.cache.CacheKey;
+import io.quarkus.cache.CacheResult;
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import io.quarkus.hibernate.orm.panache.PanacheQuery;
 import jakarta.persistence.*;
@@ -37,7 +39,8 @@ public class AccountAccess extends PanacheEntityBase {
     @Column(name = "Comment", columnDefinition = "varchar(255)")
     private String comment;
 
-    public static AccountAccess findByID(Long Id) {
+    @CacheResult(cacheName = "AccountAccessFindByID")
+    public static AccountAccess findByID(@CacheKey Long Id) {
         return (AccountAccess) findAllByID(Id).firstResult();
     }
 

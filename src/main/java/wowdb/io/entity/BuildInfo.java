@@ -1,5 +1,7 @@
 package wowdb.io.entity;
 
+import io.quarkus.cache.CacheKey;
+import io.quarkus.cache.CacheResult;
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import io.quarkus.hibernate.orm.panache.PanacheQuery;
 import jakarta.persistence.*;
@@ -30,7 +32,8 @@ public class BuildInfo extends PanacheEntityBase {
     @Column(name = "hotfixVersion", columnDefinition = "char(3)", length = 3)
     private String hotfixVersion;
 
-    public static BuildInfo findByBuild(Integer build) {
+    @CacheResult(cacheName = "BuildInfoFindByBuild")
+    public static BuildInfo findByBuild(@CacheKey Integer build) {
         return (BuildInfo) findAllByBuild(build).firstResult();
     }
 

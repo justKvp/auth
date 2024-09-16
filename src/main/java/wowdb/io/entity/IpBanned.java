@@ -1,5 +1,7 @@
 package wowdb.io.entity;
 
+import io.quarkus.cache.CacheKey;
+import io.quarkus.cache.CacheResult;
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import io.quarkus.hibernate.orm.panache.PanacheQuery;
 import jakarta.persistence.*;
@@ -30,7 +32,8 @@ public class IpBanned extends PanacheEntityBase {
     @Column(name = "banreason", columnDefinition = "varchar(255)", nullable = false)
     private String banreason;
 
-    public static IpBanned findByIp(String ip) {
+    @CacheResult(cacheName = "BuildInfoFindByBuild")
+    public static IpBanned findByIp(@CacheKey String ip) {
         return (IpBanned) findAllByIp(ip).firstResult();
     }
 

@@ -1,5 +1,6 @@
 package wowdb.io.services;
 
+import io.quarkus.cache.CacheResult;
 import io.smallrye.mutiny.Uni;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.transaction.Transactional;
@@ -73,26 +74,31 @@ public class AuthService {
         return RUtil.success();
     }
 
+    @CacheResult(cacheName = "getRealmLists")
     public Uni<Response> getRealmLists() {
         List<RealmList> realms = RealmList.listAll();
         return RUtil.success(realms);
     }
 
+    @CacheResult(cacheName = "getAccountBannedList")
     public Uni<Response> getAccountBannedList() {
         List<AccountBanned> accountBannedList = AccountBanned.listAll();
         return RUtil.success(accountBannedList);
     }
 
+    @CacheResult(cacheName = "getAccountMutedList")
     public Uni<Response> getAccountMutedList() {
         List<AccountMuted> accountMutedList = AccountMuted.listAll();
         return RUtil.success(accountMutedList);
     }
 
+    @CacheResult(cacheName = "getAutoBroadCastList")
     public Uni<Response> getAutoBroadCastList() {
         List<AutoBroadCast> autoBroadCastList = AutoBroadCast.listAll();
         return RUtil.success(autoBroadCastList);
     }
 
+    @CacheResult(cacheName = "getBuildAuthKeyList")
     public Uni<Response> getBuildAuthKeyList() {
         List<BuildAuthKey> buildAuthKeyList = BuildAuthKey.listAll();
         return RUtil.success(buildAuthKeyList);
@@ -106,6 +112,7 @@ public class AuthService {
         return RUtil.success(buildAuthKey);
     }
 
+    @CacheResult(cacheName = "getBuildExecutableHashList")
     public Uni<Response> getBuildExecutableHashList() {
         List<BuildExecutableHash> buildExecutableHashList = BuildExecutableHash.listAll();
         return RUtil.success(buildExecutableHashList);
@@ -119,6 +126,7 @@ public class AuthService {
         return RUtil.success(buildExecutableHash);
     }
 
+    @CacheResult(cacheName = "getBuildInfoList")
     public Uni<Response> getBuildInfoList() {
         List<BuildInfo> buildInfoList = BuildInfo.listAll();
         return RUtil.success(buildInfoList);
@@ -132,6 +140,7 @@ public class AuthService {
         return RUtil.success(buildInfo);
     }
 
+    @CacheResult(cacheName = "getIpBannedList")
     public Uni<Response> getIpBannedList() {
         List<IpBanned> ipBannedList = IpBanned.listAll();
         return RUtil.success(ipBannedList);

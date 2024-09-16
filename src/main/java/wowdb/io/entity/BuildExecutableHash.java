@@ -1,5 +1,7 @@
 package wowdb.io.entity;
 
+import io.quarkus.cache.CacheKey;
+import io.quarkus.cache.CacheResult;
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import io.quarkus.hibernate.orm.panache.PanacheQuery;
 import jakarta.persistence.*;
@@ -26,7 +28,8 @@ public class BuildExecutableHash extends PanacheEntityBase {
     @Column(name = "executableHash", columnDefinition = "binary(20)", length = 20, nullable = false)
     private byte[] executableHash;
 
-    public static List<BuildExecutableHash> findByBuild(Integer build) {
+    @CacheResult(cacheName = "BuildExecutableHashFindByBuild")
+    public static List<BuildExecutableHash> findByBuild(@CacheKey Integer build) {
         return findAllByBuild(build).list();
     }
 
