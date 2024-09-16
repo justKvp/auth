@@ -16,7 +16,7 @@
 #
 # docker run -i --rm -p 8071:8071 quarkus/auth
 #
-# docker run -d --name auth-backend --restart=always -e MYSQL_USER= -e MYSQL_PASSWORD= -e MYSQL_URL= -e MYSQL_PORT= -p 8071:8071 quarkus/auth
+# docker run -d --name auth-backend --restart=always --network=$MYSQL_NETWORK -e MYSQL_USER=$MYSQL_USER -e MYSQL_PASSWORD=$MYSQL_PASSWORD -e MYSQL_URL=$MYSQL_URL -e MYSQL_PORT=$MYSQL_PORT -e MYSQL_DB=MYSQL_DB -p 8071:8071 quarkus/auth
 #
 ###
 FROM quay.io/quarkus/quarkus-micro-image:2.0
