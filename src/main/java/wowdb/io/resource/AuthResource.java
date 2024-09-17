@@ -1,5 +1,7 @@
 package wowdb.io.resource;
 
+import io.quarkiverse.bucket4j.runtime.RateLimited;
+import io.quarkiverse.bucket4j.runtime.resolver.IpResolver;
 import io.smallrye.common.annotation.Blocking;
 import io.smallrye.mutiny.Uni;
 import jakarta.inject.Inject;
@@ -129,6 +131,7 @@ public class AuthResource {
         return authService.verifyAccount(accountVerifyRq);
     }
 
+    @RateLimited(bucket = "createAccount", identityResolver = IpResolver.class)
     @POST
     @Path("/createAccount")
     @Consumes(MediaType.APPLICATION_JSON)
