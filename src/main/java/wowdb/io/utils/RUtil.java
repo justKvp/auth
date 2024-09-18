@@ -75,6 +75,6 @@ public class RUtil {
     }
 
     public static Uni<Response> ipBannedDoesNotExist(String ip) {
-        return expectationFailed(CODE_IP_BANNED_DOES_NOT_EXIST, String.format(BUILD_P_BANNED_DOES_NOT_EXIST, ip));
+        return expectationFailed(CODE_IP_BANNED_DOES_NOT_EXIST, String.format(BUILD_IP_BANNED_DOES_NOT_EXIST, ip));
     }
 }
