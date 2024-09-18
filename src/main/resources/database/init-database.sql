@@ -145,6 +145,6 @@ CREATE TABLE `account` (
                            UNIQUE KEY `idx_username` (`username`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Account System';
 
-INSERT INTO auth.account
+INSERT INTO account
 (username, salt, verifier, session_key_auth, session_key_bnet, totp_secret, email, reg_mail, joindate, last_ip, last_attempt_ip, failed_logins, locked, lock_country, last_login, online, expansion, mutetime, mutereason, muteby, locale, os, timezone_offset, recruiter, coins)
 VALUES('TEST', 0x7C6FE47090E07EA641B3C44DD093AE9B68481269A53983F3F35B338F78A2580D, 0x8667081E591D2F69B201BAFA3C67C0EC3E981F805E0B8018411C11D3E276F42E, NULL, NULL, NULL, 'test@gmail.com', 'test@gmail.com', '2024-09-18 15:38:53', '127.0.0.1', '127.0.0.1', 0, 0, '00', NULL, 0, 2, 0, '', '', 0, '', 0, 0, 0);

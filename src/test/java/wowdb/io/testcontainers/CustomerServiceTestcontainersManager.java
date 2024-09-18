@@ -2,7 +2,6 @@ package wowdb.io.testcontainers;
 
 import io.quarkus.test.common.QuarkusTestResourceLifecycleManager;
 import org.testcontainers.containers.MySQLContainer;
-import org.testcontainers.containers.Network;
 import org.testcontainers.utility.DockerImageName;
 
 import java.util.HashMap;
@@ -14,15 +13,10 @@ public class CustomerServiceTestcontainersManager implements QuarkusTestResource
 
     @Override
     public Map<String, String> start() {
-        Network network = Network.newNetwork();
-        String networkAlias = "testcontainers";
-
         mySQLContainer = new MySQLContainer<>(DockerImageName.parse("mysql:8.4.2-oraclelinux9"))
                 .withDatabaseName("auth")
                 .withUsername("root")
                 .withPassword("root")
-                .withNetwork(network)
-                .withNetworkAliases(networkAlias)
                 .withInitScript("database/init-database.sql");
         mySQLContainer.start();
 

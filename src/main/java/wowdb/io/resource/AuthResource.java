@@ -20,12 +20,6 @@ public class AuthResource {
     AuthService authService;
 
     @GET
-    @Path("/healthCheck")
-    public String healthCheck() {
-        return "online";
-    }
-
-    @GET
     @Path("/getAccount/{userName}")
     @Produces(MediaType.APPLICATION_JSON)
     public Uni<Response> getAccount(@PathParam(value = "userName") String userName) {
