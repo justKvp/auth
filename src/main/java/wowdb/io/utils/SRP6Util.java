@@ -30,9 +30,16 @@ public class SRP6Util {
 
     private static byte[] finishVerifier(BigInteger source) {
         // Преобразуем BigInteger в байты и инвертируем их
-        byte[] reverseVer = source.toByteArray();
-        AUtil.reverse(reverseVer);
-        return reverseVer;
+        byte[] verifier = source.toByteArray();
+        if (verifier.length > 32) {
+            byte[] fixedVerifier = new byte[32];
+            for (int i = 0; i < 32; i++) {
+                fixedVerifier[i] = verifier[i];
+            }
+            verifier = fixedVerifier;
+        }
+        AUtil.reverse(verifier);
+        return verifier;
     }
 
     public static byte[] calculateSRP6TCVerifier(String username, String password, byte[] salt) throws NoSuchAlgorithmException {
