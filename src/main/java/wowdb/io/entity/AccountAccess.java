@@ -40,7 +40,7 @@ public class AccountAccess extends PanacheEntityBase {
     private String comment;
 
     @CacheResult(cacheName = "AccountAccessFindByID")
-    public static AccountAccess findByID(@CacheKey Long Id) {
+    public static AccountAccess cacheableFindByID(@CacheKey Long Id) {
         return (AccountAccess) findAllByID(Id).firstResult();
     }
 

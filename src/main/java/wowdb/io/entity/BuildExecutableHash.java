@@ -29,7 +29,7 @@ public class BuildExecutableHash extends PanacheEntityBase {
     private byte[] executableHash;
 
     @CacheResult(cacheName = "BuildExecutableHashFindByBuild")
-    public static List<BuildExecutableHash> findByBuild(@CacheKey Integer build) {
+    public static List<BuildExecutableHash> cacheableFindByBuild(@CacheKey Integer build) {
         return findAllByBuild(build).list();
     }
 

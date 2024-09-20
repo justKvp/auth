@@ -35,7 +35,7 @@ public class BuildAuthKey extends PanacheEntityBase {
     private byte[] key;
 
     @CacheResult(cacheName = "BuildAuthKeyFindByBuild")
-    public static List<BuildAuthKey> findByBuild(@CacheKey Integer build) {
+    public static List<BuildAuthKey> cacheableFindByBuild(@CacheKey Integer build) {
         return findAllByBuild(build).list();
     }
 

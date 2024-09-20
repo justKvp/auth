@@ -22,7 +22,7 @@ import static wowdb.io.utils.SRP6Util.*;
 public class AuthService {
 
     public Uni<Response> verifyAccount(AccountVerifyRq accountVerifyRq) {
-        Account account = Account.findByUsername(accountVerifyRq.getAccount_name().toUpperCase());
+        Account account = Account.cacheableFindByUsername(accountVerifyRq.getAccount_name().toUpperCase());
         if (account == null) {
             return RUtil.accountDoesNotExist(accountVerifyRq.getAccount_name());
         }
@@ -38,7 +38,7 @@ public class AuthService {
     }
 
     public Uni<Response> getAccount(String userName) {
-        Account account = Account.findByUsername(userName.toUpperCase());
+        Account account = Account.cacheableFindByUsername(userName.toUpperCase());
         if (account == null) {
             return RUtil.accountDoesNotExist(userName);
         }
@@ -46,7 +46,7 @@ public class AuthService {
     }
 
     public Uni<Response> getAccountAccess(String userName) {
-        Account account = Account.findByUsername(userName.toUpperCase());
+        Account account = Account.cacheableFindByUsername(userName.toUpperCase());
         if (account == null) {
             return RUtil.accountDoesNotExist(userName);
         }
@@ -57,11 +57,11 @@ public class AuthService {
     }
 
     public Uni<Response> createAccount(AccountCreateRq accountCreateRq) {
-        Account account = Account.findByUsername(accountCreateRq.getAccount_name().toUpperCase());
+        Account account = Account.cacheableFindByUsername(accountCreateRq.getAccount_name().toUpperCase());
         if (account != null) {
             return RUtil.accountAlreadyExist(accountCreateRq.getAccount_name());
         }
-        account = Account.findByEmail(accountCreateRq.getAccount_email());
+        account = Account.cacheableFindByEmail(accountCreateRq.getAccount_email());
         if (account != null) {
             return RUtil.accountEmailAlreadyInUse(accountCreateRq.getAccount_email());
         }
@@ -105,7 +105,7 @@ public class AuthService {
     }
 
     public Uni<Response> getBuildAuthKeyByBuild(Integer build) {
-        List<BuildAuthKey> buildAuthKey = BuildAuthKey.findByBuild(build);
+        List<BuildAuthKey> buildAuthKey = BuildAuthKey.cacheableFindByBuild(build);
         if (buildAuthKey.isEmpty()) {
             return RUtil.buildAuthKeyDoesNotExist(build);
         }
@@ -119,7 +119,7 @@ public class AuthService {
     }
 
     public Uni<Response> getBuildExecutableHashByBuild(Integer build) {
-        List<BuildExecutableHash> buildExecutableHash = BuildExecutableHash.findByBuild(build);
+        List<BuildExecutableHash> buildExecutableHash = BuildExecutableHash.cacheableFindByBuild(build);
         if (buildExecutableHash.isEmpty()) {
             return RUtil.buildExecutableHashKeyDoesNotExist(build);
         }
@@ -133,7 +133,7 @@ public class AuthService {
     }
 
     public Uni<Response> getBuildInfoByBuild(Integer build) {
-        BuildInfo buildInfo = BuildInfo.findByBuild(build);
+        BuildInfo buildInfo = BuildInfo.cacheableFindByBuild(build);
         if (buildInfo == null) {
             return RUtil.buildInfoDoesNotExist(build);
         }
@@ -147,7 +147,7 @@ public class AuthService {
     }
 
     public Uni<Response> getIpBannedByIp(String ip) {
-        IpBanned ipBanned = IpBanned.findByIp(ip);
+        IpBanned ipBanned = IpBanned.cacheableFindByIp(ip);
         if (ipBanned == null) {
             return RUtil.ipBannedDoesNotExist(ip);
         }
@@ -169,7 +169,7 @@ public class AuthService {
     }
 
     public Uni<Response> getRbacPermissionByName(String name) {
-        RbacPermission rbacPermission = RbacPermission.findByName(name);
+        RbacPermission rbacPermission = RbacPermission.cacheableFindByName(name);
         if (rbacPermission == null) {
             return RUtil.rbacPermissionByNameDoesNotExist(name);
         }

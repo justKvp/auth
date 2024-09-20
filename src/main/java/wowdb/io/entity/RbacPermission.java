@@ -24,7 +24,7 @@ public class RbacPermission extends PanacheEntityBase {
     private String name;
 
     @CacheResult(cacheName = "RbacPermissionFindByName")
-    public static RbacPermission findByName(@CacheKey String name) {
+    public static RbacPermission cacheableFindByName(@CacheKey String name) {
         return (RbacPermission) findAllByName(name).firstResult();
     }
 

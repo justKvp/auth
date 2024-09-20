@@ -114,7 +114,7 @@ public class Account extends PanacheEntityBase {
     private Integer recruiter;
 
     @CacheResult(cacheName = "AccountFindByUsername")
-    public static Account findByUsername(@CacheKey String userName) {
+    public static Account cacheableFindByUsername(@CacheKey String userName) {
         return (Account) findAllByUsername(userName).firstResult();
     }
 
@@ -123,7 +123,7 @@ public class Account extends PanacheEntityBase {
     }
 
     @CacheResult(cacheName = "AccountFindByEmail")
-    public static Account findByEmail(@CacheKey String email) {
+    public static Account cacheableFindByEmail(@CacheKey String email) {
         return (Account) findAllByEmail(email).firstResult();
     }
 

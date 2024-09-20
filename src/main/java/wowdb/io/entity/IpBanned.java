@@ -32,8 +32,8 @@ public class IpBanned extends PanacheEntityBase {
     @Column(name = "banreason", columnDefinition = "varchar(255)", nullable = false)
     private String banreason;
 
-    @CacheResult(cacheName = "BuildInfoFindByBuild")
-    public static IpBanned findByIp(@CacheKey String ip) {
+    @CacheResult(cacheName = "IpBannedFindByIp")
+    public static IpBanned cacheableFindByIp(@CacheKey String ip) {
         return (IpBanned) findAllByIp(ip).firstResult();
     }
 

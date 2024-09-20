@@ -33,7 +33,7 @@ public class BuildInfo extends PanacheEntityBase {
     private String hotfixVersion;
 
     @CacheResult(cacheName = "BuildInfoFindByBuild")
-    public static BuildInfo findByBuild(@CacheKey Integer build) {
+    public static BuildInfo cacheableFindByBuild(@CacheKey Integer build) {
         return (BuildInfo) findAllByBuild(build).firstResult();
     }
 
