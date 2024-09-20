@@ -5,12 +5,12 @@ import io.quarkus.test.junit.QuarkusTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import wowdb.io.AuthResourceTest;
-import wowdb.io.testcontainers.CustomerServiceTestcontainersManager;
+import wowdb.io.testcontainers.AuthResourceTestContainersManager;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.is;
 
-@QuarkusTestResource(CustomerServiceTestcontainersManager.class)
+@QuarkusTestResource(AuthResourceTestContainersManager.class)
 @QuarkusTest
 @DisplayName("Endpoint : /verifyAccount")
 class VerifyAccTest extends AuthResourceTest {

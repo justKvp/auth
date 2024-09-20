@@ -7,7 +7,7 @@ import org.testcontainers.utility.DockerImageName;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CustomerServiceTestcontainersManager implements QuarkusTestResourceLifecycleManager {
+public class AuthResourceTestContainersManager implements QuarkusTestResourceLifecycleManager {
 
     private MySQLContainer<?> mySQLContainer;
 
