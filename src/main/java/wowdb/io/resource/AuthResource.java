@@ -117,6 +117,27 @@ public class AuthResource {
         return authService.getIpBannedList();
     }
 
+    @GET
+    @Path("/getRbacPermissionList")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Uni<Response> getRbacPermissionList() {
+        return authService.getRbacPermissionList();
+    }
+
+    @GET
+    @Path("/getRbacPermissionById/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Uni<Response> getRbacPermissionById(@PathParam(value = "id") Long id) {
+        return authService.getRbacPermissionById(id);
+    }
+
+    @GET
+    @Path("/getRbacPermissionByName/{name}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Uni<Response> getRbacPermissionByName(@PathParam(value = "name") String name) {
+        return authService.getRbacPermissionByName(name);
+    }
+
     @POST
     @Path("/verifyAccount")
     @Consumes(MediaType.APPLICATION_JSON)

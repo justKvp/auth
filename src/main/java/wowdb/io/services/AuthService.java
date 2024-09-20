@@ -154,6 +154,28 @@ public class AuthService {
         return RUtil.success(ipBanned);
     }
 
+    @CacheResult(cacheName = "getRbacPermissionList")
+    public Uni<Response> getRbacPermissionList() {
+        List<RbacPermission> rbacPermissionList = RbacPermission.listAll();
+        return RUtil.success(rbacPermissionList);
+    }
+
+    public Uni<Response> getRbacPermissionById(Long id) {
+        RbacPermission rbacPermission = RbacPermission.cacheableFindByID(id);
+        if (rbacPermission == null) {
+            return RUtil.rbacPermissionByIdDoesNotExist(id);
+        }
+        return RUtil.success(rbacPermission);
+    }
+
+    public Uni<Response> getRbacPermissionByName(String name) {
+        RbacPermission rbacPermission = RbacPermission.findByName(name);
+        if (rbacPermission == null) {
+            return RUtil.rbacPermissionByNameDoesNotExist(name);
+        }
+        return RUtil.success(rbacPermission);
+    }
+
     @Transactional(value = Transactional.TxType.REQUIRES_NEW, rollbackOn = Exception.class)
     protected void addAccount(AccountCreateRq accountCreateRq) throws NoSuchAlgorithmException {
         byte[] salt = generateRandomSalt(32);

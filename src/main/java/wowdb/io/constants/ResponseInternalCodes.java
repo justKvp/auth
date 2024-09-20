@@ -12,4 +12,5 @@ public class ResponseInternalCodes {
     public static final Integer CODE_BUILD_AUTH_KEY_DOES_NOT_EXIST = 16;
     public static final Integer CODE_BUILD_EXECUTABLE_HASH_DOES_NOT_EXIST = 17;
     public static final Integer CODE_IP_BANNED_DOES_NOT_EXIST = 18;
+    public static final Integer CODE_RBAC_PERMISSION_DOES_NOT_EXIST = 19;
 }

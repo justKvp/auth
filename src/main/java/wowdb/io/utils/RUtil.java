@@ -77,4 +77,12 @@ public class RUtil {
     public static Uni<Response> ipBannedDoesNotExist(String ip) {
         return expectationFailed(CODE_IP_BANNED_DOES_NOT_EXIST, String.format(BUILD_IP_BANNED_DOES_NOT_EXIST, ip));
     }
+
+    public static Uni<Response> rbacPermissionByIdDoesNotExist(Long id) {
+        return expectationFailed(CODE_RBAC_PERMISSION_DOES_NOT_EXIST, String.format(BUILD_RBAC_PERMISSION_BY_ID_DOES_NOT_EXIST, id));
+    }
+
+    public static Uni<Response> rbacPermissionByNameDoesNotExist(String name) {
+        return expectationFailed(CODE_RBAC_PERMISSION_DOES_NOT_EXIST, String.format(BUILD_RBAC_PERMISSION_BY_NAME_DOES_NOT_EXIST, name));
+    }
 }

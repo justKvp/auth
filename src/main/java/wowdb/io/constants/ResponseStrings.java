@@ -11,4 +11,6 @@ public class ResponseStrings {
     public static final String BUILD_AUTH_KEY_DOES_NOT_EXIST = "Build Auth Key [%d] - does not exist";
     public static final String BUILD_EXECUTABLE_HASH_DOES_NOT_EXIST = "Build Executable Hash [%d] - does not exist";
     public static final String BUILD_IP_BANNED_DOES_NOT_EXIST = "Ip banned [%s] - does not exist";
+    public static final String BUILD_RBAC_PERMISSION_BY_ID_DOES_NOT_EXIST = "RBAC permission id [%d] - does not exist";
+    public static final String BUILD_RBAC_PERMISSION_BY_NAME_DOES_NOT_EXIST = "RBAC permission with name [%s] - does not exist";
 }
