@@ -1,6 +1,7 @@
 package wowdb.io.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.quarkus.cache.CacheInvalidate;
 import io.quarkus.cache.CacheKey;
 import io.quarkus.cache.CacheResult;
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
@@ -115,6 +116,11 @@ public class Account extends PanacheEntityBase {
 
     @CacheResult(cacheName = "AccountFindByUsername")
     public static Account cacheableFindByUsername(@CacheKey String userName) {
+        return (Account) findAllByUsername(userName).firstResult();
+    }
+
+    @CacheInvalidate(cacheName = "AccountFindByUsername")
+    public static Account unCacheableFindByUsername(@CacheKey String userName) {
         return (Account) findAllByUsername(userName).firstResult();
     }
 

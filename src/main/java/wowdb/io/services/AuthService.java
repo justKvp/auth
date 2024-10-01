@@ -57,7 +57,14 @@ public class AuthService {
     }
 
     public Uni<Response> createAccount(AccountCreateRq accountCreateRq) {
+        // first step - try to get acc from Cache
         Account account = Account.cacheableFindByUsername(accountCreateRq.getAccount_name().toUpperCase());
+
+        // second step - try to get acc without Cache
+        if (account == null) {
+            account = Account.unCacheableFindByUsername(accountCreateRq.getAccount_name().toUpperCase());
+        }
+
         if (account != null) {
             return RUtil.accountAlreadyExist(accountCreateRq.getAccount_name());
         }
@@ -72,6 +79,14 @@ public class AuthService {
             throw new CustomException(e);
         }
         return RUtil.success();
+    }
+
+    public Uni<Response> updateCache(AccountVerifyRq accountVerifyRq) {
+        Account account = Account.unCacheableFindByUsername(accountVerifyRq.getAccount_name().toUpperCase());
+        if (account == null) {
+            return RUtil.accountDoesNotExist(accountVerifyRq.getAccount_name());
+        }
+        return RUtil.success(account);
     }
 
     @CacheResult(cacheName = "getRealmLists")

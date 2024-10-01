@@ -148,6 +148,15 @@ public class AuthResource {
 
     @RateLimited(bucket = "createAccount", identityResolver = IpResolver.class)
     @POST
+    @Path("/updateCacheAccount")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Uni<Response> updateCacheAccount(@Valid AccountVerifyRq accountVerifyRq) {
+        return authService.updateCache(accountVerifyRq);
+    }
+
+    @RateLimited(bucket = "createAccount", identityResolver = IpResolver.class)
+    @POST
     @Path("/createAccount")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
