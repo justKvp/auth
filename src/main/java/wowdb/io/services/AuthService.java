@@ -57,18 +57,14 @@ public class AuthService {
     }
 
     public Uni<Response> createAccount(AccountCreateRq accountCreateRq) {
-        // first step - try to get acc from Cache
-        Account account = Account.cacheableFindByUsername(accountCreateRq.getAccount_name().toUpperCase());
-
-        // second step - try to get acc without Cache
-        if (account == null) {
-            account = Account.unCacheableFindByUsername(accountCreateRq.getAccount_name().toUpperCase());
-        }
-
+        // first step - try to get acc without Cache
+        Account account = Account.unCacheableFindByUsername(accountCreateRq.getAccount_name().toUpperCase());
         if (account != null) {
             return RUtil.accountAlreadyExist(accountCreateRq.getAccount_name());
         }
-        account = Account.cacheableFindByEmail(accountCreateRq.getAccount_email());
+
+        // second step - try to get acc by used email without Cache
+        account = Account.unCacheableFindByEmail(accountCreateRq.getAccount_email());
         if (account != null) {
             return RUtil.accountEmailAlreadyInUse(accountCreateRq.getAccount_email());
         }

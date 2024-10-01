@@ -133,6 +133,11 @@ public class Account extends PanacheEntityBase {
         return (Account) findAllByEmail(email).firstResult();
     }
 
+    @CacheInvalidate(cacheName = "AccountFindByEmail")
+    public static Account unCacheableFindByEmail(@CacheKey String email) {
+        return (Account) findAllByEmail(email).firstResult();
+    }
+
     public static PanacheQuery<Account> findAllByEmail(String email) {
         return find("email", new Object[]{email});
     }
